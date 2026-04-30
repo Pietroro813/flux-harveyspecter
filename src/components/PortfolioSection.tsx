@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -130,11 +130,7 @@ function CtaBlock({ className = '' }: { className?: string }) {
 // ── Section ──────────────────────────────────────────────────────────────────
 
 export default async function PortfolioSection() {
-  const items = await client.fetch<PortfolioItem[]>(
-    PORTFOLIO_QUERY,
-    {},
-    { cache: 'no-store', useCdn: false },
-  )
+  const { data: items } = await sanityFetch({ query: PORTFOLIO_QUERY }) as { data: PortfolioItem[] }
 
   const [item0, item1, item2, item3] = items
 
