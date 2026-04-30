@@ -34,13 +34,13 @@ function Card({
   name: string;
   text: string;
   logoKey: LogoKey;
-  width?: number;
+  width?: number | string;
 }) {
   const logo = logos[logoKey];
   return (
     <div
       className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 p-6 rounded-[4px]"
-      style={{ width: `${width}px` }}
+      style={{ width: typeof width === 'number' ? `${width}px` : width }}
     >
       {/* Brand logo */}
       <div className="relative shrink-0" style={{ width: `${logo.w}px`, height: `${logo.h}px` }}>
@@ -151,54 +151,46 @@ export default function TestimonialsSection() {
 
       </div>
 
-      {/*
-        ── Mobile (below xl) ──────────────────────────────────────────────
-        Heading sits above the cards.
-        Two cards in a horizontal row — the second card bleeds off-screen
-        on purpose (overflow-hidden clips it), creating the "peek" effect.
-        A -10px right margin on the first card creates the slight overlap.
-      */}
+      {/* ── Mobile (below xl) ─────────────────────────────────────────── */}
       <div className="flex flex-col gap-8 px-4 py-16 xl:hidden">
 
-        {/* Heading */}
         <h2 className="font-medium not-italic text-[64px] text-black text-center tracking-[-4.48px] leading-[0.8] capitalize w-full">
           Testimonials
         </h2>
 
-        {/* Cards row — overflow-hidden clips the second card at the right edge */}
-        <div className="overflow-hidden">
-          <div className="flex items-center" style={{ paddingRight: '10px' }}>
-
-            {/* Card 1 · Marko · rotated left · overlaps card 2 by 10px */}
-            <div
-              className="relative z-[2] shrink-0 flex items-center justify-center"
-              style={{ width: '277px', height: '316px', marginRight: '-10px' }}
-            >
-              <div style={{ transform: 'rotate(-3.5deg)' }}>
-                <Card
-                  name="Marko Stojković"
-                  logoKey="marko"
-                  width={260}
-                  text="A brilliant creative partner who transformed our vision into a unique, high-impact brand identity. Their ability to craft everything from custom mascots to polished logos is truly impressive."
-                />
-              </div>
-            </div>
-
-            {/* Card 2 · Sofia · rotated right · partially off-screen */}
-            <div
-              className="relative z-[1] shrink-0 flex items-center justify-center"
-              style={{ width: '268px', height: '264px' }}
-            >
-              <div style={{ transform: 'rotate(2deg)' }}>
-                <Card
-                  name="Sofia Martínez"
-                  logoKey="sofia"
-                  width={260}
-                  text="An incredibly versatile designer who delivers consistent quality across a wide range of styles and formats."
-                />
-              </div>
-            </div>
-
+        {/* All 4 cards stacked vertically with alternating rotation */}
+        <div className="flex flex-col gap-4">
+          <div style={{ transform: 'rotate(-2.5deg)' }}>
+            <Card
+              name="Marko Stojković"
+              logoKey="marko"
+              width="100%"
+              text="A brilliant creative partner who transformed our vision into a unique, high-impact brand identity. Their ability to craft everything from custom mascots to polished logos is truly impressive."
+            />
+          </div>
+          <div style={{ transform: 'rotate(1.5deg)' }}>
+            <Card
+              name="Sofia Martínez"
+              logoKey="sofia"
+              width="100%"
+              text="An incredibly versatile designer who delivers consistent quality across a wide range of styles and formats."
+            />
+          </div>
+          <div style={{ transform: 'rotate(-1deg)' }}>
+            <Card
+              name="Lukas Weber"
+              logoKey="lukas"
+              width="100%"
+              text="Professional, precise, and incredibly fast at handling complex product visualizations and templates."
+            />
+          </div>
+          <div style={{ transform: 'rotate(2deg)' }}>
+            <Card
+              name="Sarah Jenkins"
+              logoKey="sarah"
+              width="100%"
+              text="A strategic partner who balances stunning aesthetics with high-performance UX for complex platforms. They don't just make things look good; they solve business problems through visual clarity."
+            />
           </div>
         </div>
 
