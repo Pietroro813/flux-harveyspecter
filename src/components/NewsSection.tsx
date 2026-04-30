@@ -1,3 +1,7 @@
+'use client'
+
+import { useState } from 'react'
+
 const articles = [
   {
     id: 1,
@@ -88,6 +92,43 @@ function VDivider() {
   );
 }
 
+// ── Mobile slider ────────────────────────────────────────────────────────────
+
+function NewsSlider({ blurb }: { blurb: string }) {
+  const [index, setIndex] = useState(0)
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-300 ease-in-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {articles.map((a) => (
+            <div key={a.id} className="w-full shrink-0">
+              <ArticleCard image={a.image} text={blurb} imgHeight="h-[300px]" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center items-center gap-2">
+        {articles.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            aria-label={`Article ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-200 ${
+              i === index ? 'w-6 bg-black' : 'w-1.5 bg-[#ccc]'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ── Section ──────────────────────────────────────────────────────────────────
 
 export default function NewsSection() {
@@ -162,33 +203,11 @@ export default function NewsSection() {
       </div>
 
       {/* ── Mobile (below lg) ─────────────────────────────────────────────── */}
-      {/*
-        Title sits above. The 3-card row is wider than the viewport (300px each
-        + gaps ≈ 932px in a ~343px content area) so Cards 2 and 3 bleed off
-        the right edge — intentional peek effect matching the Figma.
-      */}
       <div className="flex flex-col gap-8 px-4 py-16 lg:hidden">
-
-        {/* Title — wraps naturally at 32px on mobile */}
         <p className="font-light not-italic text-[32px] text-black tracking-[-2.56px] uppercase leading-[0.86]">
           Keep up with my latest news &amp; achievements
         </p>
-
-        {/* Cards row — overflow-hidden clips the overflow */}
-        <div className="overflow-hidden">
-          <div className="flex items-start gap-4">
-            {articles.map((a) => (
-              <ArticleCard
-                key={a.id}
-                image={a.image}
-                text={blurb}
-                imgHeight="h-[398px]"
-                className="w-[300px] shrink-0"
-              />
-            ))}
-          </div>
-        </div>
-
+        <NewsSlider blurb={blurb} />
       </div>
 
     </section>
