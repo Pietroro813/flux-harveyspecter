@@ -127,7 +127,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-center justify-center relative shrink-0 w-full">
           <div className="flex flex-col items-start pb-[15px] w-full">
             <div ref={dHelloRef} className="flex items-center mb-[-15px] px-[18px] w-full">
-              <p className="font-mono font-normal leading-[1.1] mix-blend-overlay text-[14px] text-white uppercase whitespace-nowrap">[ Hello i&apos;m ]</p>
+              <p className="font-mono font-normal leading-[1.1] text-[14px] text-white uppercase whitespace-nowrap">[ Hello i&apos;m ]</p>
             </div>
             <div className="capitalize font-medium leading-none mb-[-15px] mix-blend-overlay text-[198px] text-center text-white tracking-[-13.86px] w-full">
               <div className="flex items-center justify-center leading-[1.1]">
@@ -184,7 +184,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-center justify-between h-[341px] relative shrink-0 w-full">
           <div className="flex flex-col items-center w-full">
             <div ref={mHelloRef} className="flex items-center justify-center px-[18px] w-full">
-              <p className="font-mono font-normal leading-[1.1] mix-blend-overlay text-[14px] text-white uppercase whitespace-nowrap">[ Hello i&apos;m ]</p>
+              <p className="font-mono font-normal leading-[1.1] text-[14px] text-white uppercase whitespace-nowrap">[ Hello i&apos;m ]</p>
             </div>
             <div className="capitalize font-medium mix-blend-overlay text-[96px] text-center text-white tracking-[-6.72px] w-full">
               <div className="flex items-center justify-center leading-[0.8]">
