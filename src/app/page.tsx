@@ -17,7 +17,7 @@ export default function Home() {
         <HeroSection />
         <IntroSection />
         <AboutSection />
-        <FullWidthPhoto />
+        <div id="fullwidthphoto"><FullWidthPhoto /></div>
         <div id="services"><ServicesSection /></div>
         <PortfolioSection />
         <TestimonialsSection />

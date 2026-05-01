@@ -58,7 +58,7 @@ export default function StickyNav() {
     });
 
     // Dark sections: services + footer
-    const darkSections = ['#services', '#footer'];
+    const darkSections = ['#fullwidthphoto', '#services', '#footer'];
     darkSections.forEach(id => {
       const el = document.querySelector(id);
       if (!el) return;
