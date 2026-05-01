@@ -7,23 +7,21 @@ import PortfolioSection from '@/components/PortfolioSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import NewsSection from '@/components/NewsSection';
 import FooterSection from '@/components/FooterSection';
-import StickyNav from '@/components/StickyNav';
 
 export default function Home() {
   return (
     <>
-      <StickyNav />
       <main>
         <HeroSection />
         <IntroSection />
         <AboutSection />
-        <div id="fullwidthphoto"><FullWidthPhoto /></div>
-        <div id="services"><ServicesSection /></div>
+        <FullWidthPhoto />
+        <ServicesSection />
         <PortfolioSection />
         <TestimonialsSection />
         <NewsSection />
       </main>
-      <div id="footer"><FooterSection /></div>
+      <FooterSection />
     </>
   );
 }
