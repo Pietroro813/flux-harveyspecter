@@ -93,14 +93,13 @@ export default function StickyNav() {
     gsap.to(overlayRef.current, { yPercent: -100, duration: 0.45, delay: 0.15, ease: 'power4.in', onComplete: () => setMenuOpen(false) });
   };
 
-  const textColor  = dark ? 'text-white' : 'text-black';
-  const bg         = dark ? 'bg-black/90'  : 'bg-[#fafafa]/90';
+  const textColor = dark ? 'text-white' : 'text-black';
 
   return (
     <>
       <header
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-40 backdrop-blur-sm transition-colors duration-300 ${bg}`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300`}
       >
         {/* Desktop */}
         <div className={`hidden md:flex items-center justify-between px-8 py-5 ${textColor}`}>
