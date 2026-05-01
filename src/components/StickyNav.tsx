@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
+import { NavLink, LetsTalkButton } from './NavUI';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -54,12 +55,10 @@ export default function StickyNav() {
         <span className="font-semibold text-[16px] tracking-[-0.64px] capitalize">H.Studio</span>
         <div className="flex gap-14 items-center font-semibold text-[16px] tracking-[-0.64px] capitalize">
           {navLinks.map(({ label, href }) => (
-            <a key={label} href={href} className="hover:opacity-60 transition-opacity">{label}</a>
+            <NavLink key={label} label={label} href={href} />
           ))}
         </div>
-        <a href="#contact" className="bg-black text-white font-medium text-[14px] tracking-[-0.56px] px-4 py-3 rounded-[24px]">
-          Let&apos;s talk
-        </a>
+        <LetsTalkButton />
       </div>
       <div className="flex md:hidden items-center justify-between px-4 py-5">
         <span className="font-semibold text-[16px] tracking-[-0.64px] capitalize">H.Studio</span>
