@@ -2,10 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { NavLink, LetsTalkButton } from './NavUI';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -46,34 +43,32 @@ export default function StickyNav() {
     const nav = navRef.current;
     if (!nav) return;
 
-    // Start hidden above viewport
     gsap.set(nav, { yPercent: -100 });
     gsap.set(overlayRef.current, { yPercent: -100 });
 
-    // Slide in after scrolling past 80px
-    ScrollTrigger.create({
-      start: '80px top',
-      onEnter:     () => gsap.to(nav, { yPercent: 0,    duration: 0.45, ease: 'power3.out' }),
-      onLeaveBack: () => gsap.to(nav, { yPercent: -100, duration: 0.35, ease: 'power3.in' }),
-    });
+    // Slide in/out based on scroll position
+    const onScroll = () => {
+      if (window.scrollY > 80) {
+        gsap.to(nav, { yPercent: 0,    duration: 0.45, ease: 'power3.out', overwrite: 'auto' });
+      } else {
+        gsap.to(nav, { yPercent: -100, duration: 0.35, ease: 'power3.in',  overwrite: 'auto' });
+      }
 
-    // Dark sections: services + footer
-    const darkSections = ['#fullwidthphoto', '#services', '#footer'];
-    darkSections.forEach(id => {
-      const el = document.querySelector(id);
-      if (!el) return;
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top top',
-        end: 'bottom top',
-        onEnter:     () => setDark(true),
-        onLeave:     () => setDark(false),
-        onEnterBack: () => setDark(true),
-        onLeaveBack: () => setDark(false),
+      // Check if any dark section is behind the nav
+      const navH = nav.offsetHeight;
+      const darkIds = ['#fullwidthphoto', '#services', '#footer'];
+      const isDark = darkIds.some(id => {
+        const el = document.querySelector(id);
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        return r.top < navH && r.bottom > 0;
       });
-    });
+      setDark(isDark);
+    };
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const openMenu = () => {
