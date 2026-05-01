@@ -130,11 +130,11 @@ export default function HeroSection() {
               <p className="font-mono font-normal leading-[1.1] mix-blend-overlay text-[14px] text-white uppercase whitespace-nowrap">[ Hello i&apos;m ]</p>
             </div>
             <div className="capitalize font-medium leading-none mb-[-15px] mix-blend-overlay text-[198px] text-center text-white tracking-[-13.86px] w-full">
-              <p className="leading-[1.1] whitespace-pre-wrap">
+              <div className="flex items-center justify-center leading-[1.1]">
                 <span ref={dHarveyRef} className="inline-block">Harvey</span>
-                {'   '}
+                <span className="inline-block" style={{ whiteSpace: 'pre' }}>{'   '}</span>
                 <span ref={dSpecterRef} className="inline-block">Specter</span>
-              </p>
+              </div>
             </div>
           </div>
           <div className="flex flex-col items-end justify-center w-full">
@@ -187,11 +187,11 @@ export default function HeroSection() {
               <p className="font-mono font-normal leading-[1.1] mix-blend-overlay text-[14px] text-white uppercase whitespace-nowrap">[ Hello i&apos;m ]</p>
             </div>
             <div className="capitalize font-medium mix-blend-overlay text-[96px] text-center text-white tracking-[-6.72px] w-full">
-              <p className="leading-[0.8] whitespace-pre-wrap">
+              <div className="flex items-center justify-center leading-[0.8]">
                 <span ref={mHarveyRef} className="inline-block">Harvey</span>
-                {'   '}
+                <span className="inline-block" style={{ whiteSpace: 'pre' }}>{'   '}</span>
                 <span ref={mSpecterRef} className="inline-block">Specter</span>
-              </p>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-[17px] items-start w-[293px]">
